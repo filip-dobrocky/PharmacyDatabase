@@ -4,7 +4,6 @@
     <Type Name="InventoryProduct">
       <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(6,2) NOT NULL" CanBeNull="false" />
       <Association Name="Product_InventoryProduct" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
@@ -21,6 +20,7 @@
       <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Prescription" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Member="SellingPrice" Type="System.Decimal" CanBeNull="false" />
       <Association Name="Product_InventoryProduct" Member="InventoryProduct" ThisKey="Id" OtherKey="ProductId" Type="InventoryProduct" Cardinality="One" />
       <Association Name="Product_SupplierProduct" Member="SupplierProducts" ThisKey="Id" OtherKey="IdProduct" Type="SupplierProduct" />
     </Type>

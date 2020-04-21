@@ -117,8 +117,6 @@ namespace PharmacyDatabase
 		
 		private int _Amount;
 		
-		private decimal _SellingPrice;
-		
 		private EntityRef<Product> _Product;
 		
     #region Extensibility Method Definitions
@@ -129,8 +127,6 @@ namespace PharmacyDatabase
     partial void OnProductIdChanged();
     partial void OnAmountChanging(int value);
     partial void OnAmountChanged();
-    partial void OnSellingPriceChanging(decimal value);
-    partial void OnSellingPriceChanged();
     #endregion
 		
 		public InventoryProduct()
@@ -179,26 +175,6 @@ namespace PharmacyDatabase
 					this._Amount = value;
 					this.SendPropertyChanged("Amount");
 					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellingPrice", DbType="Decimal(6,2) NOT NULL")]
-		public decimal SellingPrice
-		{
-			get
-			{
-				return this._SellingPrice;
-			}
-			set
-			{
-				if ((this._SellingPrice != value))
-				{
-					this.OnSellingPriceChanging(value);
-					this.SendPropertyChanging();
-					this._SellingPrice = value;
-					this.SendPropertyChanged("SellingPrice");
-					this.OnSellingPriceChanged();
 				}
 			}
 		}
@@ -386,6 +362,8 @@ namespace PharmacyDatabase
 		
 		private bool _Prescription;
 		
+		private decimal _SellingPrice;
+		
 		private EntityRef<InventoryProduct> _InventoryProduct;
 		
 		private EntitySet<SupplierProduct> _SupplierProducts;
@@ -402,6 +380,8 @@ namespace PharmacyDatabase
     partial void OnNameChanged();
     partial void OnPrescriptionChanging(bool value);
     partial void OnPrescriptionChanged();
+    partial void OnSellingPriceChanging(decimal value);
+    partial void OnSellingPriceChanged();
     #endregion
 		
 		public Product()
@@ -487,6 +467,26 @@ namespace PharmacyDatabase
 					this._Prescription = value;
 					this.SendPropertyChanged("Prescription");
 					this.OnPrescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellingPrice")]
+		public decimal SellingPrice
+		{
+			get
+			{
+				return this._SellingPrice;
+			}
+			set
+			{
+				if ((this._SellingPrice != value))
+				{
+					this.OnSellingPriceChanging(value);
+					this.SendPropertyChanging();
+					this._SellingPrice = value;
+					this.SendPropertyChanged("SellingPrice");
+					this.OnSellingPriceChanged();
 				}
 			}
 		}
