@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PharmacyDatabase" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PharmacyDatabase.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="PharmacyDatabase.Properties.Settings" SettingsPropertyName="PharmacyDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.InventoryProducts" Member="InventoryProducts">
+    <Type Name="InventoryProduct">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(6,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_InventoryProduct" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suppliers" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Supplier_SupplierProduct" Member="SupplierProducts" ThisKey="Id" OtherKey="IdSupplier" Type="SupplierProduct" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Prescription" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Product_InventoryProduct" Member="InventoryProduct" ThisKey="Id" OtherKey="ProductId" Type="InventoryProduct" Cardinality="One" />
+      <Association Name="Product_SupplierProduct" Member="SupplierProducts" ThisKey="Id" OtherKey="IdProduct" Type="SupplierProduct" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SupplierProducts" Member="SupplierProducts">
+    <Type Name="SupplierProduct">
+      <Column Name="IdSupplier" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdProduct" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BuyingPrice" Type="System.Decimal" DbType="Decimal(6,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_SupplierProduct" Member="Product" ThisKey="IdProduct" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="Supplier_SupplierProduct" Member="Supplier" ThisKey="IdSupplier" OtherKey="Id" Type="Supplier" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
