@@ -8,29 +8,40 @@ namespace PharmacyDatabase
 {
     public class ProductList
     {
-        private DataClassesDataContext _db = new DataClassesDataContext();
-
         public IQueryable<Product> Products
         {
-            get { return _db.Products; }
+            get
+            {
+                using (DataClassesDataContext db = new DataClassesDataContext())
+                    return db.Products;
+            }
         }
 
         public void Add(string name, string manufacturer, bool prescription)
         {
-            if (_db.Products.Any(x => x.Name == name))
-                throw new Exception("Product with given name already exists");
-            _db.Products.InsertOnSubmit(new Product() { Name = name,
-                                                        Manufacturer = manufacturer,
-                                                        Prescription = prescription });
-            _db.SubmitChanges();
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                if (db.Products.Any(x => x.Name == name))
+                    throw new Exception("Product with given name already exists");
+                db.Products.InsertOnSubmit(new Product()
+                {
+                    Name = name,
+                    Manufacturer = manufacturer,
+                    Prescription = prescription
+                });
+                db.SubmitChanges();
+            }
         }
 
         public void Remove(Guid id)
         {
-            _db.Products.DeleteAllOnSubmit(from s in _db.Products
-                                           where s.Id == id
-                                           select s);
-            _db.SubmitChanges();
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                db.Products.DeleteAllOnSubmit(from s in db.Products
+                                              where s.Id == id
+                                              select s);
+                db.SubmitChanges();
+            }
         }
 
         public void Import(string filePath)
