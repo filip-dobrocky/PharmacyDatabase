@@ -46,6 +46,14 @@ namespace PharmacyDatabase
             }
         }
 
+        public IEnumerable<Product> Search(string query)
+        {
+            return from p in Products
+                   where p.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                         p.Manufacturer.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+                   select p;
+        }
+
         public void Import(string filePath)
         {
             using (StreamReader r = new StreamReader(filePath))
