@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,12 +42,26 @@ namespace PharmacyDatabase
 
         public void Import(string filePath)
         {
-            //TODO: implement
+            using (StreamReader r = new StreamReader(filePath))
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                string line;
+                while ((line = r.ReadLine()) != null)
+                {
+                    if (!db.Suppliers.Any(x => x.Name == line))
+                        db.Suppliers.InsertOnSubmit(new Supplier() { Name = line });
+                }
+                db.SubmitChanges();
+            }
         }
 
         public void Export(string filePath)
         {
-            //TODO: implement
+            using (StreamWriter w = new StreamWriter(filePath))
+            {
+                foreach (Supplier s in Suppliers)
+                    w.WriteLine(s.Name);
+            }
         }
     }
 }
