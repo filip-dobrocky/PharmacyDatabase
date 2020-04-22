@@ -24,13 +24,14 @@ namespace PharmacyDatabase
             }
         }
 
-        public void AssignSupplier(Guid supplierId, Decimal price)
+        public void AssignSupplier(Supplier supplier, Decimal price)
         {
             using (DataClassesDataContext db = new DataClassesDataContext())
             {
-                db.SupplierProducts.InsertOnSubmit(new SupplierProduct() { IdProduct = Id,
-                                                                           IdSupplier = supplierId,
-                                                                           BuyingPrice = price });
+                if (!db.SupplierProducts.Any(x => x.IdProduct == Id && x.IdSupplier == supplier.Id))
+                    db.SupplierProducts.InsertOnSubmit(new SupplierProduct() { IdProduct = Id,
+                                                                               IdSupplier = supplier.Id,
+                                                                               BuyingPrice = price });
                 db.SubmitChanges();
             }
         }
