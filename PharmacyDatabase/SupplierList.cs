@@ -29,12 +29,12 @@ namespace PharmacyDatabase
             }
         }
 
-        public void Remove(Guid id)
+        public void Remove(Supplier supplier)
         {
             using (DataClassesDataContext db = new DataClassesDataContext())
             {
                 db.Suppliers.DeleteAllOnSubmit(from s in db.Suppliers
-                                               where s.Id == id
+                                               where s.Id == supplier.Id
                                                select s);
                 db.SubmitChanges();
             }
