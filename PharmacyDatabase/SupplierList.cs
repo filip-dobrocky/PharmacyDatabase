@@ -29,6 +29,16 @@ namespace PharmacyDatabase
             }
         }
 
+        public void Edit(Supplier supplier, string name)
+        {
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                var s = db.Suppliers.Single(x => x.Id == supplier.Id);
+                s.Name = name;
+                db.SubmitChanges();
+            }
+        }
+
         public void Remove(Supplier supplier)
         {
             using (DataClassesDataContext db = new DataClassesDataContext())

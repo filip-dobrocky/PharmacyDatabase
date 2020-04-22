@@ -35,6 +35,19 @@ namespace PharmacyDatabase
             }
         }
 
+        public void Edit(Product product, string name, string manufacturer, bool prescription, decimal price)
+        {
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                var p = db.Products.Single(x => x.Id == product.Id);
+                p.Name = name;
+                p.Manufacturer = manufacturer;
+                p.Prescription = prescription;
+                p.SellingPrice = price;
+                db.SubmitChanges();
+            }
+        }
+
         public void Remove(Product product)
         {
             using (DataClassesDataContext db = new DataClassesDataContext())
