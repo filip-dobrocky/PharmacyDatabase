@@ -8,10 +8,19 @@ namespace PharmacyDatabase
 {
     public class Inventory
     {
-        /*IEnumerable<Product> AvailableProducts
+        IEnumerable<Product> AvailableProducts
         {
-            //TODO: Implement
-        }*/
+            get
+            {
+                using (DataClassesDataContext db = new DataClassesDataContext())
+                {
+                    return from p in db.Products
+                           join i in db.InventoryProducts
+                           on p.Id equals i.ProductId
+                           select p;
+                }
+            }
+        }
 
         public void Resupply(Product product, Supplier supplier, int amount)
         {
@@ -38,13 +47,28 @@ namespace PharmacyDatabase
                 if (db.InventoryProducts.Any(x => x.ProductId == product.Id))
                 {
                     var p = db.InventoryProducts.Single(x => x.ProductId == product.Id);
-                    p.Amount -= amount;
+                    int remainingAmount = p.Amount - amount;
+                    if (remainingAmount == 0)
+                        db.InventoryProducts.DeleteOnSubmit(p);
+                    else if (remainingAmount < 0)
+                        throw new Exception("Product not available in given amount");
+                    else
+                        p.Amount = remainingAmount;
                 }
                 else
                 {
                     throw new Exception("Product not available");
                 }
                 db.SubmitChanges();
+            }
+        }
+
+        public int GetAvailableAmount(Product product)
+        {
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                var p = db.InventoryProducts.Single(x => x.ProductId == product.Id);
+                return p != null ? p.Amount : 0;
             }
         }
     }
