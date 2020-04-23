@@ -8,10 +8,10 @@ namespace PharmacyDatabase
 {
     public class Inventory
     {
-        IEnumerable<Product> AvailableProducts
+        /*IEnumerable<Product> AvailableProducts
         {
             //TODO: Implement
-        }
+        }*/
 
         public void Resupply(Product product, Supplier supplier, int amount)
         {

@@ -20,10 +20,42 @@ namespace PharmacyDatabase
     /// </summary>
     public partial class MainWindow : Window
     {
+        ProductList pl = new ProductList();
         public MainWindow()
         {
             InitializeComponent();
+            
         }
+
+        private class ListViewItem
+        {
+            public string Name
+            { get; set; }
+            public decimal Price
+            { get; set; }
+        }
+        public void LVRefresh()
+        {
+            var items = from item in pl.Products
+                        select new ListViewItem { Name = item.Name, Price = item.SellingPrice };
+            foreach (var item in items)
+            {
+                lwProducts.Items.Add(item);
+            }
+        }
+
+
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            pl.Add((string)txtName.Text, (string)txtManuf.Text, chbPres.IsEnabled, decimal.Parse(txtPrice.Text));
+            LVRefresh();
+
+        }
+
+
+
+
 
         //Test
     }
