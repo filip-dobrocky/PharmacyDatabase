@@ -13,8 +13,8 @@ namespace PharmacyDatabase
         {
             get
             {
-                using (DataClassesDataContext db = new DataClassesDataContext())
-                    return db.Suppliers;
+                DataClassesDataContext db = new DataClassesDataContext();
+                return db.Suppliers;
             }
         }
 
