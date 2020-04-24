@@ -9,18 +9,18 @@
   </Table>
   <Table Name="dbo.Suppliers" Member="Suppliers">
     <Type Name="Supplier">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" AutoSync="Never" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Supplier_SupplierProduct" Member="SupplierProducts" ThisKey="Id" OtherKey="IdSupplier" Type="SupplierProduct" />
     </Type>
   </Table>
   <Table Name="dbo.Products" Member="Products">
     <Type Name="Product">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" AutoSync="Never" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Manufacturer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Prescription" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Member="SellingPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="SellingPrice" Type="System.Decimal" CanBeNull="false" />
       <Association Name="Product_InventoryProduct" Member="InventoryProduct" ThisKey="Id" OtherKey="ProductId" Type="InventoryProduct" Cardinality="One" />
       <Association Name="Product_SupplierProduct" Member="SupplierProducts" ThisKey="Id" OtherKey="IdProduct" Type="SupplierProduct" />
     </Type>

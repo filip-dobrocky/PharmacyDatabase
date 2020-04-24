@@ -24,7 +24,7 @@ namespace PharmacyDatabase
         public MainWindow()
         {
             InitializeComponent();
-            
+            LVRefresh();
         }
 
         private class ListViewItem
