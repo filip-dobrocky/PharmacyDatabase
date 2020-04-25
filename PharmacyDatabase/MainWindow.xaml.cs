@@ -69,11 +69,9 @@ namespace PharmacyDatabase
         private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1;
-<<<<<<< HEAD
             cbSuppliers.SelectedIndex = -1;
-=======
+            cbSuppliers.IsEnabled = lwProducts.SelectedIndex != -1;
             this.DataContext = (Product)lwProducts.SelectedItem;
->>>>>>> 4ab7afcaa79fc531b870b52e1dbfe7343fd16d45
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -151,12 +149,21 @@ namespace PharmacyDatabase
 
         private void cbSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnAssign.IsEnabled = cbSuppliers.SelectedIndex != -1 && lwProducts.SelectedIndex != -1;
+            txtPrice.IsEnabled = cbSuppliers.SelectedIndex != -1 && lwProducts.SelectedIndex != -1;
+            btnAssign.IsEnabled = !String.IsNullOrWhiteSpace(txtPrice.Text);
         }
 
         private void btnAssign_Click(object sender, RoutedEventArgs e)
         {
-            ((Product)lwProducts.SelectedItem).AssignSupplier(((Supplier)cbSuppliers.SelectedItem));
+            decimal price;
+            decimal.TryParse(txtPrice.Text, out price);
+            ((Product)lwProducts.SelectedItem).AssignSupplier((Supplier)cbSuppliers.SelectedItem, price);
+        }
+
+        private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal price;
+            btnAssign.IsEnabled = decimal.TryParse(txtPrice.Text, out price);
         }
     }
 }

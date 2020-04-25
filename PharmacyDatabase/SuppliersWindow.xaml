@@ -21,6 +21,6 @@
             <Button x:Name="btnRemove" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24" Width="176" IsEnabled="False" Click="btnRemove_Click"/>
         </Grid>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="19" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="372" TextChanged="txtName_TextChanged"/>
-        <ListBox x:Name="lbSuppliers" HorizontalAlignment="Left" Margin="10,10,0,10" Width="372" SelectionChanged="lbSuppliers_SelectionChanged"/>
+        <ListBox x:Name="lbSuppliers" HorizontalAlignment="Left" Margin="10,10,0,10" Width="372" DisplayMemberPath="Name" SelectionChanged="lbSuppliers_SelectionChanged"/>
     </Grid>
 </Window>
