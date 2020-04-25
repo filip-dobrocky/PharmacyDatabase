@@ -28,29 +28,10 @@ namespace PharmacyDatabase
             lwProducts.ItemsSource = pl.Products;
         }
 
-        private void lwRefresh()
+        public void ProductViewRefresh()
         {
             lwProducts.ItemsSource = null;
             lwProducts.ItemsSource = pl.Products;
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                pl.Add((string)txtName.Text, (string)txtManuf.Text, chbPres.IsEnabled, decimal.Parse(txtPrice.Text));
-                lwRefresh();
-                txtName.Text = txtManuf.Text = txtPrice.Text = "";
-                lblError.Content = "";
-            }
-            catch (FormatException)
-            {
-                lblError.Content = "Invalid price format";
-            }
-            catch (Exception addException)
-            {
-                lblError.Content = addException.Message;
-            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -60,13 +41,20 @@ namespace PharmacyDatabase
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 pl.Remove(item);
-                lwRefresh();
+                ProductViewRefresh();
             }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddProductWindow addProductWindow = new AddProductWindow(ref pl);
+            addProductWindow.Show();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            
+            EditProductWindow editProductWindow = new EditProductWindow(ref pl, (Product)lwProducts.SelectedItem);
+            editProductWindow.Show();
         }
 
         private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,22 +65,9 @@ namespace PharmacyDatabase
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtSearch.Text))
-                lwRefresh();
+                ProductViewRefresh();
             else
                 lwProducts.ItemsSource = pl.Search((string)txtSearch.Text);
         }
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            btnAdd.IsEnabled = !(String.IsNullOrWhiteSpace(txtManuf.Text) ||
-                                 String.IsNullOrWhiteSpace(txtName.Text) ||
-                                 String.IsNullOrWhiteSpace(txtPrice.Text));
-        }
-
-
-
-
-
-        //Test
     }
 }
