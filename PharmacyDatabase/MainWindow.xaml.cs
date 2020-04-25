@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +70,57 @@ namespace PharmacyDatabase
                 ProductViewRefresh();
             else
                 lwProducts.ItemsSource = pl.Search((string)txtSearch.Text);
+        }
+
+        private void importProducts_Click(object sender, RoutedEventArgs e)
+        {
+            string path = getImportFilePath();
+            if (path != null)
+            {
+                pl.Import(path);
+                ProductViewRefresh();
+            }
+        }
+
+        private void exportProducts_Click(object sender, RoutedEventArgs e)
+        {
+            string path = getExportFilePath();
+            if (path != null)
+            {
+                pl.Export(path);
+            }
+        }
+
+        private void importSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void exportSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private string getImportFilePath()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+                return openFileDialog.FileName;
+            else
+                return null;
+        }
+
+        private string getExportFilePath()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (saveFileDialog.ShowDialog() == true)
+                return saveFileDialog.FileName;
+            else
+                return null;
         }
     }
 }
