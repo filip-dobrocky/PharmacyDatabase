@@ -40,6 +40,7 @@ namespace PharmacyDatabase
             {
                 pl.Add((string)txtName.Text, (string)txtManuf.Text, chbPres.IsEnabled, decimal.Parse(txtPrice.Text));
                 lwRefresh();
+                txtName.Text = txtManuf.Text = txtPrice.Text = "";
                 lblError.Content = "";
             }
             catch (FormatException)
@@ -50,6 +51,27 @@ namespace PharmacyDatabase
             {
                 lblError.Content = addException.Message;
             }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Product item = (Product)lwProducts.SelectedItem;
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Delete item " + item.Name + "?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                pl.Remove(item);
+                lwRefresh();
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)

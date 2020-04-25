@@ -13,7 +13,7 @@
             <ColumnDefinition Width="217*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" TextChanged="txtSearch_TextChanged"/>
-        <ListView x:Name="lwProducts" HorizontalAlignment="Left" Height="322" Margin="10,38,0,0" VerticalAlignment="Top" Width="330">
+        <ListView x:Name="lwProducts" HorizontalAlignment="Left" Height="322" Margin="10,38,0,0" VerticalAlignment="Top" Width="330" SelectionChanged="lwProducts_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
@@ -22,8 +22,8 @@
             </ListView.View>
         </ListView>
         <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="textBox_TextChanged"/>
-        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
-        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False" Click="btnEdit_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False" Click="btnDelete_Click"/>
         <Label Content="Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
         <Label Content="Manuacturer:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtManuf" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="textBox_TextChanged"/>
