@@ -52,6 +52,13 @@ namespace PharmacyDatabase
             }
         }
 
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnAdd.IsEnabled = !(String.IsNullOrWhiteSpace(txtManuf.Text) ||
+                                 String.IsNullOrWhiteSpace(txtName.Text) ||
+                                 String.IsNullOrWhiteSpace(txtPrice.Text));
+        }
+
 
 
 

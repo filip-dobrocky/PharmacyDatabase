@@ -22,17 +22,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="txtName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="textBox_TextChanged"/>
         <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,375,0,0" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
         <Label Content="Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
         <Label Content="Manuacturer:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtManuf" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" />
+        <TextBox x:Name="txtManuf" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="textBox_TextChanged"/>
         <CheckBox x:Name="chbPres" Content="Prescription" Grid.Column="1" HorizontalAlignment="Left" Margin="120,177,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.5,0.4"/>
         <Label Content="Price:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" />
+        <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" TextChanged="textBox_TextChanged"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="35,375,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1"  IsEnabled="False"/>
-        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1" Click="btnAdd_Click"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1" IsEnabled="False" Click="btnAdd_Click"/>
         <Label x:Name="lblError" Grid.Column="1" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>
