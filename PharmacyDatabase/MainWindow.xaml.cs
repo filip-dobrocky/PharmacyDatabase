@@ -20,37 +20,36 @@ namespace PharmacyDatabase
     /// </summary>
     public partial class MainWindow : Window
     {
-        ProductList pl = new ProductList();
+        private ProductList pl = new ProductList();
+
         public MainWindow()
         {
             InitializeComponent();
-            LVRefresh();
+            lwProducts.ItemsSource = pl.Products;
         }
 
-        private class ListViewItem
+        private void lwRefresh()
         {
-            public string Name
-            { get; set; }
-            public decimal Price
-            { get; set; }
+            lwProducts.ItemsSource = null;
+            lwProducts.ItemsSource = pl.Products;
         }
-        public void LVRefresh()
-        {
-            var items = from item in pl.Products
-                        select new ListViewItem { Name = item.Name, Price = item.SellingPrice };
-            foreach (var item in items)
-            {
-                lwProducts.Items.Add(item);
-            }
-        }
-
-
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            pl.Add((string)txtName.Text, (string)txtManuf.Text, chbPres.IsEnabled, decimal.Parse(txtPrice.Text));
-            LVRefresh();
-
+            try
+            {
+                pl.Add((string)txtName.Text, (string)txtManuf.Text, chbPres.IsEnabled, decimal.Parse(txtPrice.Text));
+                lwRefresh();
+                lblError.Content = "";
+            }
+            catch (FormatException)
+            {
+                lblError.Content = "Invalid price format";
+            }
+            catch (Exception addException)
+            {
+                lblError.Content = addException.Message;
+            }
         }
 
 

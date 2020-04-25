@@ -17,8 +17,8 @@
         <ListView x:Name="lwProducts" HorizontalAlignment="Left" Height="322" Margin="10,38,0,0" VerticalAlignment="Top" Width="330">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Price" Width="130" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Price" Width="130" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -33,5 +33,6 @@
         <TextBox x:Name="txtPrice" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="10,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" />
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="35,375,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1"  IsEnabled="False"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="35,350,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1" Click="btnAdd_Click"/>
+        <Label x:Name="lblError" Grid.Column="1" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>
