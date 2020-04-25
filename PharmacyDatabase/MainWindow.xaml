@@ -12,8 +12,7 @@
             <ColumnDefinition Width="220*"/>
             <ColumnDefinition Width="217*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Search name" VerticalAlignment="Top" Width="250"/>
-        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" Width="75" Height="23" />
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" TextChanged="txtSearch_TextChanged"/>
         <ListView x:Name="lwProducts" HorizontalAlignment="Left" Height="322" Margin="10,38,0,0" VerticalAlignment="Top" Width="330">
             <ListView.View>
                 <GridView>

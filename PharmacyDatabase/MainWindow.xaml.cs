@@ -52,6 +52,14 @@ namespace PharmacyDatabase
             }
         }
 
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(txtSearch.Text))
+                lwRefresh();
+            else
+                lwProducts.ItemsSource = pl.Search((string)txtSearch.Text);
+        }
+
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             btnAdd.IsEnabled = !(String.IsNullOrWhiteSpace(txtManuf.Text) ||

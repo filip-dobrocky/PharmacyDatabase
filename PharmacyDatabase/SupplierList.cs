@@ -53,7 +53,7 @@ namespace PharmacyDatabase
         public IEnumerable<Supplier> Search(string query)
         {
             return from s in Suppliers
-                   where s.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+                   where s.Name.ToLower().Contains(query.ToLower())
                    select s;
         }
 

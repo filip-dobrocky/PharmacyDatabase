@@ -62,8 +62,8 @@ namespace PharmacyDatabase
         public IEnumerable<Product> Search(string query)
         {
             return from p in Products
-                   where p.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                         p.Manufacturer.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+                   where p.Name.ToLower().Contains(query.ToLower()) ||
+                         p.Manufacturer.ToLower().Contains(query.ToLower())
                    select p;
         }
 
