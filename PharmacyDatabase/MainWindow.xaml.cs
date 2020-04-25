@@ -60,6 +60,7 @@ namespace PharmacyDatabase
         private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1;
+            this.DataContext = (Product)lwProducts.SelectedItem;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)

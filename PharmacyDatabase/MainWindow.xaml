@@ -9,8 +9,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="355*"/>
-            <ColumnDefinition Width="220*"/>
-            <ColumnDefinition Width="217*"/>
+            <ColumnDefinition Width="140*"/>
+            <ColumnDefinition Width="297*"/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="txtSearch" Margin="10,10,10,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top"/>
         <ListView x:Name="lwProducts" Height="322" Margin="10,38,10
@@ -22,8 +23,27 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnAdd" Content="Add" Margin="10,375,239,0" VerticalAlignment="Top" IsEnabled="True" Click="btnAdd_Click"/>
-        <Button x:Name="btnEdit" Content="Edit" Margin="124,375,124,0" VerticalAlignment="Top" IsEnabled="False" Click="btnEdit_Click"/>
-        <Button x:Name="btnDelete" Content="Delete" Margin="239,375,12,0" VerticalAlignment="Top" IsEnabled="False" Click="btnDelete_Click"/>
+        <Button x:Name="btnAdd" Content="Add" Margin="10,375,239,0" VerticalAlignment="Top" IsEnabled="True" Click="btnAdd_Click" Height="20"/>
+        <Button x:Name="btnEdit" Content="Edit" Margin="124,375,124,0" VerticalAlignment="Top" IsEnabled="False" Click="btnEdit_Click" Height="20"/>
+        <Button x:Name="btnDelete" Content="Delete" Margin="239,375,12,0" VerticalAlignment="Top" IsEnabled="False" Click="btnDelete_Click" Height="20"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="Name:"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="Manufacturer:"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="Price"/>
+
+        </TextBlock>
+        <TextBlock x:Name="txbProduct"  FontWeight="Bold" Grid.Column="2" HorizontalAlignment="Left" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Run Text="{Binding Name, Mode=OneWay}"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="{Binding Manufacturer, Mode=OneWay}"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Run Text="{Binding SellingPrice, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </Window>
