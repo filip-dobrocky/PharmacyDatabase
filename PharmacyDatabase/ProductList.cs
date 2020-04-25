@@ -90,13 +90,16 @@ namespace PharmacyDatabase
                         throw new FormatException("Invalid file: could not parse boolean " + values[2]);
                     if (!Decimal.TryParse(values[3], out price))
                         throw new FormatException("Invalid file: could not parse decimal " + values[3]);
-                    db.Products.InsertOnSubmit(new Product()
+                    if (!db.Products.Any(x => x.Name == values[0]))
                     {
-                        Name = values[0],
-                        Manufacturer = values[1],
-                        Prescription = prescription,
-                        SellingPrice = price
-                    });
+                        db.Products.InsertOnSubmit(new Product()
+                        {
+                            Name = values[0],
+                            Manufacturer = values[1],
+                            Prescription = prescription,
+                            SellingPrice = price
+                        });
+                    }
 
                 }
                 db.SubmitChanges();
