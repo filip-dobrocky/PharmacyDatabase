@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500.667" Width="800">
+        Title="MainWindow" Height="480" Width="800" ResizeMode="NoResize">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -24,16 +24,16 @@
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="355*"/>
-                <ColumnDefinition Width="110*"/>
-                <ColumnDefinition Width="327*"/>
+                <ColumnDefinition Width="356*"/>
+                <ColumnDefinition Width="419*"/>
+                <ColumnDefinition Width="19*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtSearch" Margin="10,10,10,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top"/>
             <ListView x:Name="lwProducts" Height="322" Margin="10,38,10,0" VerticalAlignment="Top" SelectionChanged="lwProducts_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
-                        <GridViewColumn Header="Price" Width="130" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
+                        <GridViewColumn Header="Price" Width="120" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
