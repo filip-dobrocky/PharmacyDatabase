@@ -5,22 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Title="Suppliers" Height="400" Width="400">
+        Title="Suppliers" Height="400" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="286*"/>
+            <RowDefinition Height="143*"/>
+            <RowDefinition Height="145*"/>
             <RowDefinition Height="39*"/>
             <RowDefinition Height="44*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24" Width="176" IsEnabled="False" Click="btnAdd_Click"/>
-            <Button x:Name="btnRemove" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="24" Width="176" IsEnabled="False" Click="btnRemove_Click"/>
+            <Button x:Name="btnRemove" Content="Remove" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" Height="24" IsEnabled="False" Click="btnRemove_Click"/>
         </Grid>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="19" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="372" TextChanged="txtName_TextChanged"/>
-        <ListBox x:Name="lbSuppliers" HorizontalAlignment="Left" Margin="10,10,0,10" Width="372" DisplayMemberPath="Name" SelectionChanged="lbSuppliers_SelectionChanged"/>
+        <TextBox x:Name="txtName" Height="19" Margin="10,10,10,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtName_TextChanged"/>
+        <ListBox x:Name="lbSuppliers" Margin="10" DisplayMemberPath="Name" SelectionChanged="lbSuppliers_SelectionChanged" Grid.RowSpan="2"/>
     </Grid>
 </Window>
