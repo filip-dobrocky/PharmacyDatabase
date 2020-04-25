@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Height="307.5" Width="339.">
+        Height="307.5" Width="339." ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="txtName" Margin="10,41,10,0" TextWrapping="Wrap" TextChanged="textBox_TextChanged" Height="23" VerticalAlignment="Top"/>
         <Label Content="Name:"  HorizontalAlignment="Left" Margin="10,10,0,0" Width="311" Height="26" VerticalAlignment="Top"/>
