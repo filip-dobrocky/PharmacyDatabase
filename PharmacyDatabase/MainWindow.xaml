@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="800">
+        Title="MainWindow" Height="500.667" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -17,6 +17,9 @@
                     <MenuItem Header="_Products" Click="exportProducts_Click"/>
                     <MenuItem Header="_Suppliers" Click="exportSuppliers_Click"/>
                 </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Suppliers" Click="suppliers_Click"/>
             </MenuItem>
         </Menu>
         <Grid>
@@ -34,9 +37,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="btnAdd" Content="Add" Margin="10,375,239,0" VerticalAlignment="Top" IsEnabled="True" Click="btnAdd_Click"/>
-            <Button x:Name="btnEdit" Content="Edit" Margin="124,375,124,0" VerticalAlignment="Top" IsEnabled="False" Click="btnEdit_Click"/>
-            <Button x:Name="btnDelete" Content="Delete" Margin="239,375,12,0" VerticalAlignment="Top" IsEnabled="False" Click="btnDelete_Click"/>
+            <Button x:Name="btnAdd" Content="Add" Margin="10,0,239,10" VerticalAlignment="Bottom" IsEnabled="True" Click="btnAdd_Click"/>
+            <Button x:Name="btnEdit" Content="Edit" Margin="127,0,127,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnEdit_Click" RenderTransformOrigin="0.5,2.775"/>
+            <Button x:Name="btnDelete" Content="Delete" Margin="241,0,10,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnDelete_Click"/>
+            <ComboBox x:Name="cbSuppliers" HorizontalAlignment="Left" Margin="10,399,0,0" VerticalAlignment="Top" Width="106" Height="20" SelectionChanged="cbSuppliers_SelectionChanged"/>
+            <Label Content="Assign supplier:" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
+            <Button x:Name="btnAssign" Content="Assign" HorizontalAlignment="Left" Margin="241,399,0,0" VerticalAlignment="Top" Width="104" IsEnabled="False" Click="btnAssign_Click"/>
+            <Label Content="Buying price:" HorizontalAlignment="Left" Margin="127,365,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
+            <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="20" Margin="127,399,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" IsEnabled="False" />
         </Grid>
     </DockPanel>
 </Window>

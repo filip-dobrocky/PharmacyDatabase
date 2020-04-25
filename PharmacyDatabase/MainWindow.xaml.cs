@@ -22,17 +22,25 @@ namespace PharmacyDatabase
     public partial class MainWindow : Window
     {
         private ProductList pl = new ProductList();
+        private SupplierList sl = new SupplierList();
 
         public MainWindow()
         {
             InitializeComponent();
             lwProducts.ItemsSource = pl.Products;
+            cbSuppliers.ItemsSource = sl.Suppliers;
         }
 
         public void ProductViewRefresh()
         {
             lwProducts.ItemsSource = null;
             lwProducts.ItemsSource = pl.Products;
+        }
+
+        public void SupplierBoxRefresh()
+        {
+            cbSuppliers.ItemsSource = null;
+            cbSuppliers.ItemsSource = sl.Suppliers;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -61,6 +69,7 @@ namespace PharmacyDatabase
         private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1;
+            cbSuppliers.SelectedIndex = -1;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -69,6 +78,12 @@ namespace PharmacyDatabase
                 ProductViewRefresh();
             else
                 lwProducts.ItemsSource = pl.Search((string)txtSearch.Text);
+        }
+
+        private void suppliers_Click(object sender, RoutedEventArgs e)
+        {
+            SuppliersWindow suppliersWindow = new SuppliersWindow(ref sl);
+            suppliersWindow.Show();
         }
 
         private void importProducts_Click(object sender, RoutedEventArgs e)
@@ -92,12 +107,20 @@ namespace PharmacyDatabase
 
         private void importSuppliers_Click(object sender, RoutedEventArgs e)
         {
-
+            string path = getImportFilePath();
+            if (path != null)
+            {
+                sl.Import(path);
+            }
         }
 
         private void exportSuppliers_Click(object sender, RoutedEventArgs e)
         {
-
+            string path = getExportFilePath();
+            if (path != null)
+            {
+                sl.Export(path);
+            }
         }
 
         private string getImportFilePath()
@@ -120,6 +143,16 @@ namespace PharmacyDatabase
                 return saveFileDialog.FileName;
             else
                 return null;
+        }
+
+        private void cbSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnAssign.IsEnabled = cbSuppliers.SelectedIndex != -1 && lwProducts.SelectedIndex != -1;
+        }
+
+        private void btnAssign_Click(object sender, RoutedEventArgs e)
+        {
+            ((Product)lwProducts.SelectedItem).AssignSupplier(((Supplier)cbSuppliers.SelectedItem));
         }
     }
 }

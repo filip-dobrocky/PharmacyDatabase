@@ -27,8 +27,6 @@ namespace PharmacyDatabase
             pl = productList;
         }
 
-        //protected abstract void btnConfirm_Click(object sender, RoutedEventArgs e);
-
         protected abstract void confirmAction();
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
