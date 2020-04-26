@@ -23,11 +23,13 @@ namespace PharmacyDatabase
     {
         private ProductList pl = new ProductList();
         private SupplierList sl = new SupplierList();
+        private Inventory inventory = new Inventory();
 
         public MainWindow()
         {
             InitializeComponent();
             lwProducts.ItemsSource = pl.Products;
+            lwInventory.ItemsSource = inventory.AvailableProducts;
             cbSuppliers.ItemsSource = sl.Suppliers;
         }
 
@@ -41,6 +43,12 @@ namespace PharmacyDatabase
         {
             cbSuppliers.ItemsSource = null;
             cbSuppliers.ItemsSource = sl.Suppliers;
+        }
+
+        public void InventoryViewRefresh()
+        {
+            lwInventory.ItemsSource = null;
+            lwInventory.ItemsSource = inventory.AvailableProducts;
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -68,10 +76,25 @@ namespace PharmacyDatabase
 
         private void lwProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1;
-            cbSuppliers.SelectedIndex = -1;
-            cbSuppliers.IsEnabled = lwProducts.SelectedIndex != -1;
-            this.DataContext = (Product)lwProducts.SelectedItem;
+            if (cbSuppliers.IsEnabled = cbProductSuppliers.IsEnabled = btnEdit.IsEnabled = btnDelete.IsEnabled = lwProducts.SelectedIndex != -1)
+            {
+                cbSuppliers.SelectedIndex = -1;
+                lwInventory.SelectedIndex = -1;
+                txtSell.IsEnabled = btnSell.IsEnabled = false;
+                cbProductSuppliers.ItemsSource = ((Product)lwProducts.SelectedItem).Suppliers;
+                this.DataContext = (Product)lwProducts.SelectedItem;
+            }
+        }
+
+        private void lwInventory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txtSell.IsEnabled = btnSell.IsEnabled = lwInventory.SelectedIndex != -1)
+            {
+                lwProducts.SelectedIndex = -1;
+                txtSell.Text = ((Product)lwInventory.SelectedItem).AvailableAmount.ToString();
+                cbProductSuppliers.IsEnabled = txtResupply.IsEnabled = btnResupply.IsEnabled = false;
+                this.DataContext = (Product)lwInventory.SelectedItem;
+            }
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -155,15 +178,48 @@ namespace PharmacyDatabase
 
         private void btnAssign_Click(object sender, RoutedEventArgs e)
         {
-            decimal price;
-            decimal.TryParse(txtPrice.Text, out price);
-            ((Product)lwProducts.SelectedItem).AssignSupplier((Supplier)cbSuppliers.SelectedItem, price);
+            ((Product)lwProducts.SelectedItem).AssignSupplier((Supplier)cbSuppliers.SelectedItem, decimal.Parse(txtPrice.Text));
         }
 
         private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
             decimal price;
             btnAssign.IsEnabled = decimal.TryParse(txtPrice.Text, out price);
+        }
+
+        private void cbProductSuppliers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtResupply.IsEnabled = cbProductSuppliers.SelectedIndex != -1;
+            int amount;
+            if (btnResupply != null)
+                btnResupply.IsEnabled = int.TryParse(txtSell.Text, out amount);
+        }
+
+        private void txtResupply_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (btnResupply != null)
+                btnResupply.IsEnabled = int.TryParse(txtResupply.Text, out amount);
+        }
+
+        private void btnResupply_Click(object sender, RoutedEventArgs e)
+        {
+            inventory.Resupply((Product)lwProducts.SelectedItem, (Supplier)cbSuppliers.SelectedItem, int.Parse(txtResupply.Text));
+            InventoryViewRefresh();
+        }
+
+        private void txtSell_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int amount;
+            if (btnSell != null)
+                btnSell.IsEnabled = int.TryParse(txtSell.Text, out amount);
+        }
+
+        private void btnSell_Click(object sender, RoutedEventArgs e)
+        {
+            inventory.Sell((Product)lwInventory.SelectedItem, int.Parse(txtSell.Text));
+            InventoryViewRefresh();
+            lwInventory.SelectedIndex = -1;
         }
     }
 }

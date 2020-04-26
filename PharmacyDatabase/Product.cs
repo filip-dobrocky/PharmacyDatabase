@@ -12,14 +12,23 @@ namespace PharmacyDatabase
         {
             get
             {
+                DataClassesDataContext db = new DataClassesDataContext();
+                return from s in db.Suppliers
+                       join sp in db.SupplierProducts
+                       on s.Id equals sp.IdSupplier
+                       where sp.IdProduct == Id
+                       select s;
+            }
+        }
+
+        public int AvailableAmount
+        {
+            get
+            {
                 using (DataClassesDataContext db = new DataClassesDataContext())
                 {
-                    return from s in db.Suppliers
-                           join sp in db.SupplierProducts
-                           on s.Id equals sp.IdSupplier
-                           where sp.IdProduct == Id
-                           select s;
-
+                    var p = db.InventoryProducts.Single(x => x.ProductId == Id);
+                    return p != null ? p.Amount : 0;
                 }
             }
         }

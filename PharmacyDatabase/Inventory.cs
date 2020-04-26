@@ -8,17 +8,15 @@ namespace PharmacyDatabase
 {
     public class Inventory
     {
-        IEnumerable<Product> AvailableProducts
+        public IEnumerable<Product> AvailableProducts
         {
             get
             {
-                using (DataClassesDataContext db = new DataClassesDataContext())
-                {
-                    return from p in db.Products
-                           join i in db.InventoryProducts
-                           on p.Id equals i.ProductId
-                           select p;
-                }
+                DataClassesDataContext db = new DataClassesDataContext();
+                return from p in db.Products
+                       join i in db.InventoryProducts
+                       on p.Id equals i.ProductId
+                       select p;
             }
         }
 
@@ -60,15 +58,6 @@ namespace PharmacyDatabase
                     throw new Exception("Product not available");
                 }
                 db.SubmitChanges();
-            }
-        }
-
-        public int GetAvailableAmount(Product product)
-        {
-            using (DataClassesDataContext db = new DataClassesDataContext())
-            {
-                var p = db.InventoryProducts.Single(x => x.ProductId == product.Id);
-                return p != null ? p.Amount : 0;
             }
         }
     }

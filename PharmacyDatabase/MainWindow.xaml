@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="574.5" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="575" Width="800" ResizeMode="NoResize">
     <DockPanel Margin="0,0,0,31">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -22,30 +22,30 @@
                 <MenuItem Header="_Suppliers" Click="suppliers_Click"/>
             </MenuItem>
         </Menu>
-        <Grid Height="488" VerticalAlignment="Top">
+        <Grid Margin="0,0,0,-30">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="356*"/>
-                <ColumnDefinition Width="419*"/>
-                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="300*"/>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="250*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtSearch" Margin="10,10,10,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top"/>
-            <ListView x:Name="lwProducts" Height="322" Margin="10,38,10,0" VerticalAlignment="Top" SelectionChanged="lwProducts_SelectionChanged">
+            <ListView x:Name="lwProducts" Height="378" Margin="10,38,10,0" VerticalAlignment="Top" SelectionChanged="lwProducts_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
-                        <GridViewColumn Header="Price" Width="120" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
+                        <GridViewColumn Header="Price" Width="75" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="btnAdd" Content="Add" Margin="10,0,239,10" VerticalAlignment="Bottom" IsEnabled="True" Click="btnAdd_Click"/>
-            <Button x:Name="btnEdit" Content="Edit" Margin="127,0,127,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnEdit_Click" RenderTransformOrigin="0.5,2.775"/>
-            <Button x:Name="btnDelete" Content="Delete" Margin="241,0,10,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnDelete_Click"/>
-            <ComboBox x:Name="cbSuppliers" HorizontalAlignment="Left" Margin="10,399,0,0" VerticalAlignment="Top" Width="106" Height="20" SelectionChanged="cbSuppliers_SelectionChanged"  DisplayMemberPath="Name" IsEnabled="False"/>
-            <Label Content="Assign supplier:" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
-            <Button x:Name="btnAssign" Content="Assign" HorizontalAlignment="Left" Margin="241,399,0,0" VerticalAlignment="Top" Width="104" IsEnabled="False" Click="btnAssign_Click"/>
-            <Label Content="Buying price:" HorizontalAlignment="Left" Margin="127,365,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
-            <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="20" Margin="127,399,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="101" IsEnabled="False" TextChanged="txtPrice_TextChanged" />
-            <GroupBox Header="Product Info:" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,10,82,294">
+            <Button x:Name="btnAdd" Content="Add" Margin="10,0,187,10" VerticalAlignment="Bottom" IsEnabled="True" Click="btnAdd_Click" Height="20"/>
+            <Button x:Name="btnEdit" Content="Edit" Margin="121,0,97,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnEdit_Click" Height="20"/>
+            <Button x:Name="btnDelete" Content="Delete" Margin="211,0,10,10" VerticalAlignment="Bottom" IsEnabled="False" Click="btnDelete_Click" Height="20"/>
+            <ComboBox x:Name="cbSuppliers" Margin="10,450,187,0" VerticalAlignment="Top" Height="20" SelectionChanged="cbSuppliers_SelectionChanged"  DisplayMemberPath="Name" IsEnabled="False"/>
+            <Label Content="Assign supplier:" HorizontalAlignment="Left" Margin="10,416,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
+            <Button x:Name="btnAssign" Content="Assign" Margin="211,450,10,0" VerticalAlignment="Top" IsEnabled="False" Click="btnAssign_Click" Height="20"/>
+            <Label Content="Buying price:" HorizontalAlignment="Left" Margin="121,416,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
+            <TextBox x:Name="txtPrice" Height="20" Margin="121,450,97,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtPrice_TextChanged" />
+            <GroupBox Header="Product Info:" Grid.Column="1" Margin="0,10,10,392">
                 <Grid Height="107" VerticalAlignment="Top" Margin="0,0,0,-13">
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="74">
                         <Run Text="Name:"/>
@@ -54,9 +54,9 @@
                         <Run Text="Manufacturer:"/>
                         <LineBreak/>
                         <LineBreak/>
-                        <Run Text="Price"/>
+                        <Run Text="Price:"/>
                     </TextBlock>
-                    <TextBlock  FontWeight="Bold" HorizontalAlignment="Left" Margin="104,10,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="80" Width="229">
+                    <TextBlock  FontWeight="Bold" Margin="104,10,10,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="80">
                         <Run Text="{Binding Name, Mode=OneWay}"/>
                         <LineBreak/>
                         <LineBreak/>
@@ -68,6 +68,20 @@
                 </Grid>
 
             </GroupBox>
+            <ListView x:Name="lwInventory" Margin="10,38,10,10" SelectionChanged="lwInventory_SelectionChanged" Grid.Column="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Amount" Width="70" DisplayMemberBinding="{Binding AvailableAmount}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Inventory" Grid.Column="2" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="228"/>
+            <ComboBox x:Name="cbProductSuppliers" Grid.Column="1" HorizontalAlignment="Left" Margin="0,140,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False" DisplayMemberPath="Name" SelectionChanged="cbProductSuppliers_SelectionChanged"/>
+            <TextBox x:Name="txtResupply" Grid.Column="1" Height="23" Margin="125,140,94,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtResupply_TextChanged"/>
+            <Button x:Name="btnResupply" Content="Resupply" Grid.Column="1" Margin="159,140,10,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnResupply_Click"/>
+            <TextBox x:Name="txtSell" Grid.Column="1" Height="23" Margin="125,168,94,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtSell_TextChanged"/>
+            <Button x:Name="btnSell" Content="Sell" Grid.Column="1" Margin="159,168,10,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnSell_Click"/>
         </Grid>
     </DockPanel>
 </Window>
