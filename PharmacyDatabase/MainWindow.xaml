@@ -71,10 +71,11 @@
             <ComboBox x:Name="cbProductSuppliers" Grid.Column="1" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" Width="84" IsEnabled="False" DisplayMemberPath="Name" SelectionChanged="cbProductSuppliers_SelectionChanged" Height="22"/>
             <TextBox x:Name="txtResupply" Grid.Column="1" Height="22" Margin="89,300,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtResupply_TextChanged" HorizontalAlignment="Left" Width="46"/>
             <Button x:Name="btnResupply" Content="Resupply" Grid.Column="1" Margin="140,300,255,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnResupply_Click"/>
-            <TextBox x:Name="txtSell" Grid.Column="1" Height="23" Margin="89,328,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtSell_TextChanged" HorizontalAlignment="Left" Width="46"/>
-            <Button x:Name="btnSell" Content="Sell" Grid.Column="1" Margin="140,328,255,0" VerticalAlignment="Top" Height="23" IsEnabled="False" Click="btnSell_Click" RenderTransformOrigin="0.526,1.24"/>
+            <TextBox x:Name="txtSell" Height="20" Margin="240,461,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtSell_TextChanged" HorizontalAlignment="Left" Width="80" Grid.Column="1"/>
+            <Button x:Name="btnSell" Content="Sell" Grid.Column="1" Margin="326,461,-30,0" VerticalAlignment="Top" Height="20" IsEnabled="False" Click="btnSell_Click" RenderTransformOrigin="0.526,1.24"/>
             <Label FontSize="10" Content="Available &#xD;&#xA;products" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="291,38,0,0" VerticalAlignment="Top" Width="54" Grid.ColumnSpan="2" Height="37"/>
             <TextBox x:Name="txtSearchInv" Margin="240,10,-29,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top" Grid.Column="1"/>
+            <Label x:Name="lblBuyingPrice" Content="" HorizontalAlignment="Left" Margin="296,318,0,0" VerticalAlignment="Top" Width="245" Grid.ColumnSpan="2"/>
         </Grid>
     </DockPanel>
 </Window>

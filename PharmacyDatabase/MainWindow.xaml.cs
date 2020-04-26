@@ -211,6 +211,11 @@ namespace PharmacyDatabase
             int amount;
             if (btnResupply != null)
                 btnResupply.IsEnabled = int.TryParse(txtSell.Text, out amount);
+            if (cbProductSuppliers.SelectedIndex == -1)
+                lblBuyingPrice.Content = "";
+            else
+                lblBuyingPrice.Content = string.Format("Buying price: {0} per piece",
+                    Product.GetBuyingPrice((Product)lwProducts.SelectedItem, (Supplier)cbProductSuppliers.SelectedItem)); 
         }
 
         private void txtResupply_TextChanged(object sender, TextChangedEventArgs e)
