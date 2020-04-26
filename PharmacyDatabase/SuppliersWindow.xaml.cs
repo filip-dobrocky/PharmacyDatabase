@@ -39,6 +39,7 @@ namespace PharmacyDatabase
             sl.Add(txtName.Text);
             LBRefresh();
             ((MainWindow)Application.Current.MainWindow).SupplierBoxRefresh();
+            txtName.Text = "";
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)

@@ -20,6 +20,13 @@ namespace PharmacyDatabase
             }
         }
 
+        public IEnumerable<Product> Search(string query)
+        {
+            return from p in AvailableProducts
+                   where p.Name.ToLower().Contains(query.ToLower())
+                   select p;
+        }
+
         public void Resupply(Product product, Supplier supplier, int amount)
         {
             using (DataClassesDataContext db = new DataClassesDataContext())

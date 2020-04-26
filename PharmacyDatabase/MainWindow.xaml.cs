@@ -99,10 +99,23 @@ namespace PharmacyDatabase
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(txtSearch.Text))
+            if (String.IsNullOrWhiteSpace(((TextBox)sender).Text))
+            {
                 ProductViewRefresh();
+                InventoryViewRefresh();
+            }
             else
-                lwProducts.ItemsSource = pl.Search((string)txtSearch.Text);
+            {
+                switch (((TextBox)sender).Name)
+                {
+                    case "txtSearch":
+                        lwProducts.ItemsSource = pl.Search((string)((TextBox)sender).Text);
+                        break;
+                    case "txtSearchInv":
+                        lwInventory.ItemsSource = inventory.Search((string)((TextBox)sender).Text);
+                        break;
+                }  
+            }   
         }
 
         private void suppliers_Click(object sender, RoutedEventArgs e)
