@@ -32,7 +32,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Path=Name}"/>
-                        <GridViewColumn Header="Price" Width="75" DisplayMemberBinding="{Binding Path=SellingPrice}"/>
+                        <GridViewColumn Header="Manufacturer" Width="75" DisplayMemberBinding="{Binding Path=Manufacturer}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
