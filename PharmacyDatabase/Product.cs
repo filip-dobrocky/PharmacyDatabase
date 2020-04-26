@@ -37,7 +37,9 @@ namespace PharmacyDatabase
         {
             using (DataClassesDataContext db = new DataClassesDataContext())
             {
-                if (!db.SupplierProducts.Any(x => x.IdProduct == Id && x.IdSupplier == supplier.Id))
+                if (db.SupplierProducts.Any(x => x.IdProduct == Id && x.IdSupplier == supplier.Id))
+                    db.SupplierProducts.Single(x => x.IdProduct == Id && x.IdSupplier == supplier.Id).BuyingPrice = price;
+                else
                     db.SupplierProducts.InsertOnSubmit(new SupplierProduct() { IdProduct = Id,
                                                                                IdSupplier = supplier.Id,
                                                                                BuyingPrice = price });
