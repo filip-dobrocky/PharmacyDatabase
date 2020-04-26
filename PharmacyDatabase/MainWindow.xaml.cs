@@ -109,10 +109,10 @@ namespace PharmacyDatabase
                 switch (((TextBox)sender).Name)
                 {
                     case "txtSearch":
-                        lwProducts.ItemsSource = pl.Search((string)((TextBox)sender).Text);
+                        lwProducts.ItemsSource = pl.Search(((TextBox)sender).Text);
                         break;
                     case "txtSearchInv":
-                        lwInventory.ItemsSource = inventory.Search((string)((TextBox)sender).Text);
+                        lwInventory.ItemsSource = inventory.Search(((TextBox)sender).Text);
                         break;
                 }  
             }   
@@ -228,13 +228,13 @@ namespace PharmacyDatabase
         private void btnResupply_Click(object sender, RoutedEventArgs e)
         {
             inventory.Resupply((Product)lwProducts.SelectedItem, (Supplier)cbProductSuppliers.SelectedItem, int.Parse(txtResupply.Text));
-            InventoryViewRefresh();
             MessageBox.Show(string.Format("Resupplied {0}pc(s) of {1} from {2} for total amount of {3}",
                 txtResupply.Text,
                 ((Product)lwProducts.SelectedItem).Name,
                 ((Supplier)cbProductSuppliers.SelectedItem).Name,
                 int.Parse(txtResupply.Text) * Product.GetBuyingPrice((Product)lwProducts.SelectedItem, (Supplier)cbProductSuppliers.SelectedItem)
                 ));
+            InventoryViewRefresh();
         }
 
         private void txtSell_TextChanged(object sender, TextChangedEventArgs e)
