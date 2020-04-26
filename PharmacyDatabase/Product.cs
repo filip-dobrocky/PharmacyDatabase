@@ -44,5 +44,14 @@ namespace PharmacyDatabase
                 db.SubmitChanges();
             }
         }
+
+        public static decimal GetBuyingPrice(Product product, Supplier supplier)
+        {
+            using (DataClassesDataContext db = new DataClassesDataContext())
+            {
+                var p = db.SupplierProducts.Single(x => x.IdProduct == product.Id & x.IdSupplier == supplier.Id);
+                return p.BuyingPrice;
+            }
+        }
     }
 }

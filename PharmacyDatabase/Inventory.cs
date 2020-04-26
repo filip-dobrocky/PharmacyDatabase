@@ -20,6 +20,8 @@ namespace PharmacyDatabase
             }
         }
 
+
+
         public IEnumerable<Product> Search(string query)
         {
             return from p in AvailableProducts

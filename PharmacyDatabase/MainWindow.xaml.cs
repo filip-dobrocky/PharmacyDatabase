@@ -192,6 +192,11 @@ namespace PharmacyDatabase
         private void btnAssign_Click(object sender, RoutedEventArgs e)
         {
             ((Product)lwProducts.SelectedItem).AssignSupplier((Supplier)cbSuppliers.SelectedItem, decimal.Parse(txtPrice.Text));
+            MessageBox.Show(string.Format("{0} now supplies {1} for {2}", 
+                ((Supplier)cbSuppliers.SelectedItem).Name, 
+                ((Product)lwProducts.SelectedItem).Name, 
+                txtPrice.Text));
+            lwProducts.SelectedIndex = -1;
         }
 
         private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
@@ -217,8 +222,14 @@ namespace PharmacyDatabase
 
         private void btnResupply_Click(object sender, RoutedEventArgs e)
         {
-            inventory.Resupply((Product)lwProducts.SelectedItem, (Supplier)cbSuppliers.SelectedItem, int.Parse(txtResupply.Text));
+            inventory.Resupply((Product)lwProducts.SelectedItem, (Supplier)cbProductSuppliers.SelectedItem, int.Parse(txtResupply.Text));
             InventoryViewRefresh();
+            MessageBox.Show(string.Format("Resupplied {0}pc(s) of {1} from {2} for total amount of {3}",
+                txtResupply.Text,
+                ((Product)lwProducts.SelectedItem).Name,
+                ((Supplier)cbProductSuppliers.SelectedItem).Name,
+                int.Parse(txtResupply.Text) * Product.GetBuyingPrice((Product)lwProducts.SelectedItem, (Supplier)cbProductSuppliers.SelectedItem)
+                ));
         }
 
         private void txtSell_TextChanged(object sender, TextChangedEventArgs e)
@@ -231,8 +242,13 @@ namespace PharmacyDatabase
         private void btnSell_Click(object sender, RoutedEventArgs e)
         {
             inventory.Sell((Product)lwInventory.SelectedItem, int.Parse(txtSell.Text));
-            InventoryViewRefresh();
+            MessageBox.Show(string.Format("Sold {0} pc(s) of {1} for total amount of {2}",
+                txtSell.Text,
+                ((Product)lwInventory.SelectedItem).Name,
+                ((Product)lwInventory.SelectedItem).SellingPrice * int.Parse(txtSell.Text)
+                ));
             lwInventory.SelectedIndex = -1;
+            InventoryViewRefresh();
         }
     }
 }
