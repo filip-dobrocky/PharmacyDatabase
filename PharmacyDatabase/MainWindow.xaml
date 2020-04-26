@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PharmacyDatabase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="575" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="575" Width="963" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="Height">
     <DockPanel Margin="0,0,0,31">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -22,11 +22,10 @@
                 <MenuItem Header="_Suppliers" Click="suppliers_Click"/>
             </MenuItem>
         </Menu>
-        <Grid Margin="0,0,0,-30" Width="778">
+        <Grid Margin="0,0,0,-30" Width="830" Height="527" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="489"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="txtSearch" Margin="10,10,10,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top"/>
             <ListView x:Name="lwProducts" Height="389" Margin="10,38,10,0" VerticalAlignment="Top" SelectionChanged="lwProducts_SelectionChanged">
@@ -45,10 +44,10 @@
             <Button x:Name="btnAssign" Content="Assign" Margin="210,461,11,0" VerticalAlignment="Top" IsEnabled="False" Click="btnAssign_Click" Height="20"/>
             <Label Content="Buying price:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="104,438,0,0" VerticalAlignment="Top" Height="29" Width="106" RenderTransformOrigin="1.479,0.924"/>
             <TextBox x:Name="txtPrice" Height="20" Margin="108,461,110,0" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtPrice_TextChanged" />
-            <GroupBox Header="Product Info:" Grid.Column="1" Margin="0,170,10,232">
+            <GroupBox Header="Product Info:" Grid.Column="1" Margin="0,170,255,232">
                 <Grid Height="107" VerticalAlignment="Top" Margin="0,0,0,-13">
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="45"><Run Text="Name:"/><LineBreak/><LineBreak/><Run Text="Man"/><Run Text="uf."/><Run Text=":"/><LineBreak/><LineBreak/><Run Text="Price:"/></TextBlock>
-                    <TextBlock  FontWeight="Bold" Margin="60,10,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Height="80">
+                    <TextBlock  FontWeight="Bold" Margin="60,10,10,0" TextWrapping="NoWrap" VerticalAlignment="Top" Height="80">
                         <Run Text="{Binding Name, Mode=OneWay}"/>
                         <LineBreak/>
                         <LineBreak/>
@@ -60,7 +59,7 @@
                 </Grid>
 
             </GroupBox>
-            <ListView x:Name="lwInventory" Margin="10,38,0,100" SelectionChanged="lwInventory_SelectionChanged" HorizontalAlignment="Left" Width="280" Grid.Column="2">
+            <ListView x:Name="lwInventory" Margin="240,38,-31,100" SelectionChanged="lwInventory_SelectionChanged" HorizontalAlignment="Left" Width="280" Grid.Column="1">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
@@ -68,14 +67,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Inventory" FontSize="10" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="113,38,0,0" VerticalAlignment="Top" Width="64"/>
-            <ComboBox x:Name="cbProductSuppliers" Grid.Column="1" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" Width="84" IsEnabled="False" DisplayMemberPath="Name" SelectionChanged="cbProductSuppliers_SelectionChanged"/>
-            <TextBox x:Name="txtResupply" Grid.Column="1" Height="23" Margin="89,300,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtResupply_TextChanged" HorizontalAlignment="Left" Width="20"/>
-            <Button x:Name="btnResupply" Content="Resupply" Grid.Column="1" Margin="114,300,10,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnResupply_Click"/>
-            <TextBox x:Name="txtSell" Grid.Column="1" Height="23" Margin="89,328,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtSell_TextChanged" HorizontalAlignment="Left" Width="20"/>
-            <Button x:Name="btnSell" Content="Sell" Grid.Column="1" Margin="114,328,10,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnSell_Click"/>
-            <Label FontSize="10" Content="Available &#xD;&#xA;products" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="291,38,0,0" VerticalAlignment="Top" Width="54" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="txtSearchInv" Margin="10,10,9,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top" Grid.Column="2"/>
+            <Label Content="Inventory" FontSize="10" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="171,38,0,0" VerticalAlignment="Top" Width="64" Height="23"/>
+            <ComboBox x:Name="cbProductSuppliers" Grid.Column="1" HorizontalAlignment="Left" Margin="0,300,0,0" VerticalAlignment="Top" Width="84" IsEnabled="False" DisplayMemberPath="Name" SelectionChanged="cbProductSuppliers_SelectionChanged" Height="22"/>
+            <TextBox x:Name="txtResupply" Grid.Column="1" Height="22" Margin="89,300,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtResupply_TextChanged" HorizontalAlignment="Left" Width="46"/>
+            <Button x:Name="btnResupply" Content="Resupply" Grid.Column="1" Margin="140,300,255,0" VerticalAlignment="Top" Height="22" IsEnabled="False" Click="btnResupply_Click"/>
+            <TextBox x:Name="txtSell" Grid.Column="1" Height="23" Margin="89,328,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" IsEnabled="False" TextChanged="txtSell_TextChanged" HorizontalAlignment="Left" Width="46"/>
+            <Button x:Name="btnSell" Content="Sell" Grid.Column="1" Margin="140,328,255,0" VerticalAlignment="Top" Height="23" IsEnabled="False" Click="btnSell_Click" RenderTransformOrigin="0.526,1.24"/>
+            <Label FontSize="10" Content="Available &#xD;&#xA;products" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="291,38,0,0" VerticalAlignment="Top" Width="54" Grid.ColumnSpan="2" Height="37"/>
+            <TextBox x:Name="txtSearchInv" Margin="240,10,-29,0" TextWrapping="Wrap" TextChanged="txtSearch_TextChanged" Height="23" VerticalAlignment="Top" Grid.Column="1"/>
         </Grid>
     </DockPanel>
 </Window>
