@@ -52,6 +52,9 @@ namespace PharmacyDatabase
         {
             using (DataClassesDataContext db = new DataClassesDataContext())
             {
+                db.SupplierProducts.DeleteAllOnSubmit(from s in db.SupplierProducts
+                                                      where s.IdProduct == product.Id
+                                                      select s);
                 db.Products.DeleteAllOnSubmit(from s in db.Products
                                               where s.Id == product.Id
                                               select s);
